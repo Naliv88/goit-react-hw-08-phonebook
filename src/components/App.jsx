@@ -1,24 +1,49 @@
 import React from 'react';
-import ContactForm from './ContactForm/ContactForm';
-import { Filter } from './Filter/Filter';
-import { ContactList } from './ContactList/ContactList';
-
-import style from './App.module.css';
+import { Route, Routes } from 'react-router-dom';
+import { Phonebook } from '../page/Phonebook/Phonebook';
+import SimpleCard from '../page/Header';
+import Register from './Header/Registry';
+import SingIn from './Header/SingIn';
+import PrivateRoute from './Route/PrivatRoute';
+import PublicRoute from './Route/PublicRoute';
 
 const App = () => {
-
   return (
-    <div className={style.section}>
-      <h1>Phonebook</h1>
-      <ContactForm/>
-      <h2>Contacts</h2>
-      <Filter  />
-      <ContactList />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<SimpleCard />}>
+          <Route index element={<SingIn />} />
+          <Route
+            path="/phonebook"
+            element={
+              <PrivateRoute redirectTo="/login" component={<Phonebook />} />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute
+                redirectTo="/phonebook"
+                restricted
+                component={<Register />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute
+                redirectTo="/phonebook"
+                restricted
+                component={<SingIn />}
+              />
+            }
+          />
+          <Route path="*" element={<h1> False page </h1>} />
+        </Route>
+      </Routes>
+    </>
   );
 };
 
 export default App;
-
-
-// @sydorenko_anna
