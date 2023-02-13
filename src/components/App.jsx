@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Phonebook } from '../page/Phonebook/Phonebook';
 import SimpleCard from '../page/Header';
@@ -6,8 +6,16 @@ import Register from './Header/Registry';
 import SingIn from './Header/SingIn';
 import PrivateRoute from './Route/PrivatRoute';
 import PublicRoute from './Route/PublicRoute';
+import { useDispatch } from 'react-redux';
+import { refreshUser } from 'redux/User/auth-operations';
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refreshUser())
+  }, [dispatch]);
+  
   return (
     <>
       <Routes>
