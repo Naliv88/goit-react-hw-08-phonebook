@@ -1,7 +1,7 @@
 import { Text, Input, Box } from '@chakra-ui/react';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { change } from 'redux/filter-slice';
+import { change } from '../../redux/User/auth-slice';
 
 export const Filter = () => {
   const filter = useSelector(state => state.filter);

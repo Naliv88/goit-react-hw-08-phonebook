@@ -1,10 +1,13 @@
-import { useSelector } from 'react-redux';
+
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const PublicRoute = ({ component, redirectTo = '/', restricted = 'false' }) => {
+
+export const PublicRoute = ({ children }) => {
   const isLoggenIn = useSelector(state => state.auth.isLoggedIn);
-  // const shouldRedirect = isLoggenIn && restricted;
-  return isLoggenIn ? <Navigate to={redirectTo} /> : component;
-};
 
-export default PublicRoute;
+  if (isLoggenIn) {
+    return <Navigate to="/phonebook" />;
+  }
+  return children;
+};

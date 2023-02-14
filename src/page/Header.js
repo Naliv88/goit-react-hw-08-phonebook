@@ -1,20 +1,27 @@
-import { Flex, Box, Spacer } from '@chakra-ui/react';
+import { Flex, Spacer } from '@chakra-ui/react';
 import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
+import {  NavLink, Outlet } from 'react-router-dom';
 import { ThreeCircles } from 'react-loader-spinner';
 import LogOut from '../components/Header/Button/LogOut';
 import LogIn from '../components/Header/Button/LogIn';
 import { useSelector } from 'react-redux';
 
+// import { Link as ReachLink } from "@reach/router"
+
 export default function SimpleCard() {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   return (
     <>
-      <Flex bg={'tomato'}>
-        <Box p="4" bg="blue.400">
-          LOGO
-        </Box>
+      <Flex bg={'orange.200'} align={'center'} gap={'10px'} color={'blue.400'}>
+        
+        <NavLink to="/">Home</NavLink>
+
+        <NavLink to="/phonebook" paddingLeft="10px">
+          Phonebook
+        </NavLink>
+
         <Spacer />
+
         {isLoggedIn ? <LogOut /> : <LogIn />}
       </Flex>
       <Suspense

@@ -23,7 +23,6 @@ const LogOut = () => {
       >
         Logout
       </Button>
-      <button className="logoutBtn"></button>
     </Flex>
   );
 };
